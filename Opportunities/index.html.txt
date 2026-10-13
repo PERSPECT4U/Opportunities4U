@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youth Opportunities</title>
+    <style>
+        /* Light, fresh background with a subtle pastel blue-pink gradient corner */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffffff, #f4f7fe, #fff5f8);
+            color: #2d3748;
+            margin: 0;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        .container { 
+            max-width: 700px; 
+            margin: 0 auto; 
+        }
+        
+        /* Fun, friendly title using a soft pastel purple-pink */
+        h1 { 
+            text-align: center; 
+            color: #6c5ce7; 
+            font-size: 2.3rem; 
+            margin-bottom: 8px;
+            font-weight: 800;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #718096;
+            margin-bottom: 35px;
+            font-size: 1rem;
+        }
+        
+        /* Clean Pastel Filter Buttons */
+        .filters { 
+            display: flex; 
+            justify-content: center; 
+            gap: 12px; 
+            margin-bottom: 35px; 
+        }
+        
+        .filter-btn {
+            background: #ffffff; 
+            color: #4a5568; 
+            border: 2px solid #e2e8f0; 
+            padding: 10px 24px;
+            border-radius: 25px; 
+            cursor: pointer; 
+            font-weight: 600; 
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        
+        .filter-btn:hover { 
+            border-color: #a29bfe;
+            transform: translateY(-1px);
+        }
+        
+        /* When active, buttons light up with soft pastel colors */
+        .filter-btn.active[data-target="all"] { background: #eef2ff; border-color: #818cf8; color: #4f46e5; }
+        .filter-btn.active[data-target="tech"] { background: #ecfeff; border-color: #22d3ee; color: #0891b2; }
+        .filter-btn.active[data-target="creative"] { background: #fdf2f8; border-color: #f472b6; color: #db2777; }
+
+        /* Opportunities Layout */
+        .grid { 
+            display: grid; 
+            gap: 20px; 
+        }
+        
+        /* Pure white card with soft shadows and pastel borders on hover */
+        .card {
+            background: #ffffff; 
+            padding: 24px;
+            border-radius: 16px; 
+            border: 1px solid #edf2f7;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card:hover { 
+            transform: translateY(-4px); 
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.06);
+        }
+        
+        .card h3 {
+            margin: 12px 0 6px 0;
+            font-size: 1.3rem;
+            color: #1a202c;
+        }
+        
+        .card p {
+            margin: 0;
+            color: #4a5568;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+        
+        /* Soft Pastel Badges */
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 8px; 
+            font-size: 0.75rem; 
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .tag.tech { 
+            background: #e0f7fa; 
+            color: #006064; 
+        }
+        
+        .tag.creative { 
+            background: #fce4ec; 
+            color: #880e4f; 
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>✨ Future Spark</h1>
+    <div class="subtitle">Find your next big step or cool hobby</div>
+    
+    <div class="filters">
+        <button class="filter-btn active" data-target="all" onclick="filterData('all', this)">All Opportunities</button>
+        <button class="filter-btn" data-target="tech" onclick="filterData('tech', this)">💻 Tech</button>
+        <button class="filter-btn" data-target="creative" onclick="filterData('creative', this)">🎨 Creative</button>
+    </div>
+
+    <div class="grid" id="opportunities">
+        <div class="card" data-category="tech">
+            <span class="tag tech">Tech & Coding</span>
+            <h3>Summer Coding Camp</h3>
+            <p>Learn Python and build cool web games completely free online this summer break.</p>
+        </div>
+        
+        <div class="card" data-category="creative">
+            <span class="tag creative">Creative Arts</span>
+            <h3>Graphic Design Masterclass</h3>
+            <p>Master Canva layouts, brand design, and UI sketching with industry professionals.</p>
+        </div>
+
+        <div class="card" data-category="tech">
+            <span class="tag tech">Tech & Coding</span>
+            <h3>Robotics League Qualifier</h3>
+            <p>Form a team of up to three people and compete in building simple autonomous tasks.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function filterData(category, button) {
+        // Clear active styles from all buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        // Add active style to clicked button
+        button.classList.add('active');
+        
+        // Loop through cards and animate show/hide
+        document.querySelectorAll('.card').forEach(card => {
+            if (category === 'all' || card.getAttribute('data-category') === category) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+</script>
+</body>
+</html>
